@@ -1,0 +1,95 @@
+:root {
+    --primario: #0000FF;
+    --secundario: #ABDB2A;
+    --colorFondo: #121212;
+
+    --fuentePrincipal: .pacifico-regular {
+        font-family: "Pacifico", cursive;
+        font-weight: 400;
+        font-style: normal;
+      }
+}
+
+body {
+    /* background-color: var(--primario); */
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+main {
+    z-index: 1;
+}
+
+video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Valor alto para que esté sobre el lienzo */
+}
+
+@media screen and (orientation: portrait) {
+    .video-responsive {
+        display: none;
+    }
+
+    img {
+        width: 10rem;
+    }
+
+    .animacion {
+        position: absolute;
+        display: inline-block;
+        top: 15rem;
+        left: 37%;
+        animation: caidaBackInDownAndRotacion 6s; /* Ajustamos la duración total */
+    }
+    
+    @keyframes caidaBackInDownAndRotacion {
+        0% {
+            opacity: 0;
+            transform: translateY(-500px) scaleY(0.7) rotate(0deg);
+        }
+        50% {
+            transform: translateY(0px) scaleY(1.2) rotate(0deg);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0px) scaleY(1.2) rotate(360deg);
+        }
+    }
+}
+
+@media screen and (orientation: landscape) {
+    .animacion {
+        display: none;
+    }
+
+    video {
+        width: 100%;
+        height: 100%;
+    }
+
+    .video-responsive {
+        /* position: relative; */
+        padding-bottom: 56.25%; 
+        padding-top: 1.875rem;
+        height: 0;
+        /* overflow: hidden; */
+    }
+        
+    .video-responsive iframe,
+    .video-responsive object,
+    .video-responsive embed {
+        /* position: absolute; */
+        top: 0;
+        left: 0;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }   
+}
